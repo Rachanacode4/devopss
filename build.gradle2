@@ -1,0 +1,38 @@
+plugins {
+    id 'application'
+    id 'java-library'
+    id 'maven-publish'
+}
+
+repositories {
+    mavenLocal()
+    maven {
+        url = uri('https://repo.maven.apache.org/maven2/')
+    }
+}
+
+dependencies {
+    // Use JUnit 5 for testing
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.2'
+}
+
+group = 'com.example'
+version = '1.0-SNAPSHOT'
+description = 'HelloMaven'
+java.sourceCompatibility = JavaVersion.VERSION_1_8
+
+application {
+    mainClass = 'com.example.App'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            from(components.java)
+        }
+    }
+}
